@@ -4,4 +4,7 @@ export default defineNuxtConfig({
   devtools: { enabled: false },
   extends: ["@nuxt/ui-pro"],
   modules: ["@nuxt/ui", "@nuxt/image", "@pinia/nuxt"],
+  pinia: {
+    storesDirs: ["./stores/**", "./custom-folder/stores/**"],
+  },
 });

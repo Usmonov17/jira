@@ -1,4 +1,3 @@
-import { NuxtImg, NuxtLink } from '../../.nuxt/components';
 <template>
   <nav class="fixed top-0 left-0 w-full bg-gray-100 dark:bg-gray-900 z-50 py-6">
     <div class="container mx-auto flex items-center justify-between">
@@ -8,12 +7,20 @@ import { NuxtImg, NuxtLink } from '../../.nuxt/components';
       </NuxtLink>
       <div class="flex items-center space-x-2">
         <SharedDarkMode />
-        <NuxtLink to="/auth">
-          <UButton color="blue" variant="outline">Get it Free </UButton>
-        </NuxtLink>
-        <NuxtLink to="/auth">
-          <UButton color="blue" variant="soft">Sign In</UButton>
-        </NuxtLink>
+        <template v-if="currentUser.status">
+          <UButton color="red" class="font-bold">Log out</UButton>
+          <NuxtLink to="/documents">
+            <UButton color="blue" variant="outline" class="font-bold">Documents</UButton>
+          </NuxtLink>
+        </template>
+        <template v-else>
+          <NuxtLink to="/auth">
+            <UButton color="blue" variant="outline">Get it Free </UButton>
+          </NuxtLink>
+          <NuxtLink to="/auth">
+            <UButton color="blue" variant="soft">Sign In</UButton>
+          </NuxtLink>
+        </template>
       </div>
     </div>
   </nav>
@@ -21,4 +28,7 @@ import { NuxtImg, NuxtLink } from '../../.nuxt/components';
 </template>
 
 <script setup lang="ts">
+import { useAuthStore } from '~/store/auth';
+const { currentUser } = useAuthStore()
+
 </script>

@@ -28,9 +28,20 @@
   </div>
 </template>
 <script setup lang="ts">
+import { ACCOUNT } from '~/libs/appwrite';
+
+const router = useRouter()
 const isLogin = ref(true);
 const toogleLogin = () => {
   isLogin.value = !isLogin.value
 }
-definePageMeta({ layout: "auth" });
+
+onMounted(() => {
+  ACCOUNT.get().then(() => router.push('/'))
+}),
+
+  definePageMeta({ layout: "auth" });
+useHead({
+  title: 'Authorization | Jira',
+})
 </script>

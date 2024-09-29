@@ -1,5 +1,6 @@
 <template>
-  <div class="flex items-center justify-center h-screen w-full relative">
+  <UILoader v-if="loadingStore.isLoading" />
+  <div v-else class="flex items-center justify-center h-screen w-full relative">
     <NuxtImg src="/bg-auth.jpg" class="absolute inset-0 w-full h-full object-cover z-10" />
     <div class="absolute inset-0 w-full h-full z-20 dark:bg-black/40 bg-white/40"></div>
     <UCard class="z-50 w-[50%] relative" :ui="{ body: { base: 'flex gap-4' } }">
@@ -29,7 +30,9 @@
 </template>
 <script setup lang="ts">
 import { ACCOUNT } from '~/libs/appwrite';
-
+import { useLoading } from '~/store/loading';
+import { onMounted } from 'vue';
+const loadingStore = useLoading()
 const router = useRouter()
 const isLogin = ref(true);
 const toogleLogin = () => {
@@ -37,7 +40,9 @@ const toogleLogin = () => {
 }
 
 onMounted(() => {
-  ACCOUNT.get().then(() => router.push('/'))
+  ACCOUNT.get()
+    .then(() => router.push('/'))
+    .catch(() => loadingStore.set(false))
 }),
 
   definePageMeta({ layout: "auth" });

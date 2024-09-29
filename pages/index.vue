@@ -7,8 +7,8 @@ import { UTabs, NuxtImg } from '../.nuxt/components';
       <div class="pl-20 flex flex-col space-y-3">
         <h1 class="text-5xl">Move fast, stay aligned, and build better - together</h1>
         <p class="text-lg opacity-80">The #1 software development tool used by agile teams</p>
-        <NuxtLink to="/auth" v-if="currentUser.status">
-          <UButton color="blue" variant="outline">Documents</UButton>
+        <NuxtLink to="/documents" v-if="currentUser.status">
+          <UButton color="blue">Documents</UButton>
         </NuxtLink>
         <NuxtLink to="/auth" v-else>
           <UButton color="blue">Try it Free</UButton>

@@ -7,8 +7,8 @@
       </NuxtLink>
       <div class="flex items-center space-x-2">
         <SharedDarkMode />
-        <template v-if="currentUser.status">
-          <UButton color="red" class="font-bold">Log out</UButton>
+        <template v-if="authStore.currentUser.status">
+          <UButton color="red" class="font-bold" @click="logOut">Log out</UButton>
           <NuxtLink to="/documents">
             <UButton color="blue" variant="outline" class="font-bold">Documents</UButton>
           </NuxtLink>
@@ -28,7 +28,21 @@
 </template>
 
 <script setup lang="ts">
+import { ACCOUNT } from '~/libs/appwrite';
 import { useAuthStore } from '~/store/auth';
-const { currentUser } = useAuthStore()
+import { useLoading } from '~/store/loading';
+const authStore = useAuthStore();
+const router = useRouter()
 
+const loadingStore = useLoading()
+
+const logOut = async () => {
+  try {
+    loadingStore.set(true);
+    await ACCOUNT.deleteSession('current');
+    router.push('/auth');
+    authStore.clear();
+    loadingStore.set(false);
+  } catch (error) { }
+}
 </script>

@@ -1,3 +1,8 @@
+import { EnumStatus } from "~/types";
+export const DATA_ID = 'data'
+export const COLLECTION_DATA = 'deals'
+export const COLLECTION_COMMENTS = 'comments'
+
 export const tabs = [
   {
     label: "Plan",
@@ -79,7 +84,7 @@ export const sidebarItems = [
   {
     name: "Dashboards",
     url: "/documents",
-    icon: "i-mage:dashboard",
+    icon: "material-symbols:dashboard",
   },
   {
     name: "To Do",
@@ -89,7 +94,7 @@ export const sidebarItems = [
   {
     name: "In Progress",
     url: "/documents/in-progress",
-    icon: "game-icons:progression",
+    icon: "marketeq:chart-column-grow",
   },
   {
     name: "Produced",
@@ -102,3 +107,26 @@ export const sidebarItems = [
     icon: "i-material-symbols:cloud-done-rounded",
   },
 ];
+
+export const status = [
+  {
+    id: EnumStatus.todo,
+    name: 'ToDo',
+    items: []
+  },
+  {
+    id: EnumStatus.in_progress,
+    name: 'In progress',
+    items: []
+  },
+  {
+    id: EnumStatus.produced,
+    name: 'Produced',
+    items: []
+  },
+  {
+    id: EnumStatus.done,
+    name: 'Done',
+    items: []
+  }
+]

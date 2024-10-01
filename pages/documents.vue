@@ -18,6 +18,7 @@
 <script setup lang="ts">
 import { status } from "~/constants";
 import { ACCOUNT } from "~/libs/appwrite";
+import { useStatusQuery } from "~/query/query";
 import { useAuthStore } from "~/store/auth";
 import { useLoading } from "~/store/loading";
 
@@ -37,6 +38,8 @@ onMounted(() => {
     })
     .catch(() => router.push("/auth"));
 });
+
+const {data} = useStatusQuery();
 
 definePageMeta({ layout: "documents" });
 useHead({

@@ -1,12 +1,6 @@
 <template>
   <div class="grid grid-cols-4 gap-2 mt-12">
-    <UButton
-      class="w-full h-10"
-      color="blue"
-      variant="outline"
-      v-for="(item, index) in status"
-      :key="index"
-    >
+    <UButton class="w-full h-10" color="blue" variant="outline" v-for="(item, index) in status" :key="index">
       <div class="flex items-center space-x-2 justify-between">
         <span class="font-bold">{{ item.name }}</span>
         <span class="text-sm text-neutral-500">2</span>
@@ -36,10 +30,10 @@ onMounted(() => {
         status: res.status,
       });
     })
-    .catch(() => router.push("/auth"));
+    .catch();
 });
 
-const {data} = useStatusQuery();
+const { data } = useStatusQuery();
 
 definePageMeta({ layout: "documents" });
 useHead({
